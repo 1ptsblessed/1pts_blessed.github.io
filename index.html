@@ -23,18 +23,20 @@
             color: #d9cbad;
         }
 
-        /* ФОН: мрачный лес + готический замок */
+        /* ФОН — background2.jpg */
         body::before {
             content: "";
             position: fixed;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
-            background-image:  url('fon2.jpg');
-            background-size: 300px 100%, 280px 100%, 400px 100%;
-            background-position: left bottom, right bottom, center bottom;
-            background-repeat: no-repeat, no-repeat, repeat-x;
+            width: 100vw;
+            height: 100vh;
+            background-image: url('fon2.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            filter: brightness(0.25) contrast(1.1) grayscale(0.6);
             z-index: -2;
             pointer-events: none;
         }
@@ -47,12 +49,11 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(ellipse at 50% 30%, transparent 40%, #010001 95%);
+            background: radial-gradient(ellipse at 50% 30%, rgba(0,0,0,0.5) 30%, #010001 90%);
             z-index: -1;
             pointer-events: none;
         }
 
-        /* Основной блок — адаптивный */
         .card {
             max-width: 740px;
             width: 100%;
@@ -65,49 +66,7 @@
             box-shadow: 0 25px 45px rgba(0,0,0,0.9), inset 0 0 35px rgba(40, 20, 5, 0.3);
         }
 
-        /* Вензельная рамка — скрывается на телефонах, чтобы не мешать */
-        .card::before, .card::after {
-            display: none;
-        }
-
-        min-width: 768px {
-            .card::before, .card::after {
-                display: block;
-            }
-            .card::before {
-                content: "᚛ ᚁ ᚂ ᚃ ᚄ ᚅ ᚆ ᚇ ᚈ ᚉ ᚊ ᚋ ᚌ ᚍ ᚎ ᚏ ᚐ ᚑ ᚒ ᚓ ᚔ ᚕ ᚖ ᚗ ᚘ ᚙ ᚚ ᚛";
-                position: absolute;
-                top: -25px;
-                left: 0;
-                right: 0;
-                text-align: center;
-                font-size: 0.6rem;
-                color: #8a6a42;
-                letter-spacing: 2px;
-                white-space: nowrap;
-                overflow-x: auto;
-                font-family: monospace;
-                opacity: 0.5;
-            }
-            .card::after {
-                content: "᚛ ᚁ ᚂ ᚃ ᚄ ᚅ ᚆ ᚇ ᚈ ᚉ ᚊ ᚋ ᚌ ᚍ ᚎ ᚏ ᚐ ᚑ ᚒ ᚓ ᚔ ᚕ ᚖ ᚗ ᚘ ᚙ ᚚ ᚛";
-                position: absolute;
-
-
-bottom: -25px;
-                left: 0;
-                right: 0;
-                text-align: center;
-                font-size: 0.6rem;
-                color: #8a6a42;
-                letter-spacing: 2px;
-                white-space: nowrap;
-                font-family: monospace;
-                opacity: 0.5;
-                transform: rotate(180deg);
-            }
-        }
-
+        /* АВАТАР — avatar.jpg */
         .avatar {
             width: 120px;
             height: 120px;
@@ -119,11 +78,13 @@ bottom: -25px;
             border: 1px solid #7a5a38;
             filter: grayscale(0.4) contrast(1.2);
             box-shadow: 0 0 20px rgba(0,0,0,0.6);
+            overflow: hidden;
         }
 
-        .avatar span {
-            font-size: 3rem;
-            color: #aa8a5a;
+        .avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         h1 {
@@ -152,7 +113,11 @@ bottom: -25px;
             word-break: break-word;
         }
 
-        /* Главный акцент — с переносами для телефона */
+        .container-center {
+            text-align: center;
+        }
+
+        /* Главный акцент — на двух языках */
         .cry-out {
             padding: 1rem 0.5rem;
             margin: 1.5rem 0;
@@ -170,9 +135,11 @@ bottom: -25px;
             color: #e6c88a;
             text-shadow: 0 0 5px #3a1a08;
             font-style: italic;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.
+
+
+5rem;
             word-break: break-word;
-            hyphens: auto;
         }
 
         .russian {
@@ -187,57 +154,88 @@ bottom: -25px;
             word-break: break-word;
         }
 
-        .schedule p {
-            margin: 0.6rem 0;
+        /* Расписание — дублирование на русском и английском */
+        .schedule-item {
+            margin: 0.8rem 0;
             display: flex;
             justify-content: space-between;
             flex-wrap: wrap;
             font-size: 0.7rem;
             letter-spacing: 1px;
-            text-transform: uppercase;
-            color: #d4be8a;
             border-bottom: 1px dotted #4a301a;
-            padding-bottom: 0.4rem;
+            padding-bottom: 0.5rem;
             gap: 0.5rem;
         }
 
-        .schedule strong {
+        .schedule-label {
             color: #e6cf8a;
             font-weight: 500;
             font-family: monospace;
         }
 
+        .schedule-value {
+            color: #d4be8a;
+            text-align: right;
+        }
+
+        .schedule-value span {
+            display: inline-block;
+        }
+
+        .schedule-value .eng {
+            color: #c4a06a;
+        }
+
+        .schedule-value .rus {
+            color: #b89060;
+            font-size: 0.65rem;
+        }
+
+        /* Кнопки — названия на английском */
         .links {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 0.6rem;
-            margin: 1.5rem 0 1rem;
+            gap: 0.8rem;
+            margin: 1.8rem 0 1.2rem;
         }
 
         .btn {
             background: transparent;
             border: 1px solid #6a4a28;
-            padding: 0.5rem 1rem;
+            padding: 0.6rem 1.2rem;
             text-decoration: none;
             font-weight: 400;
             color: #e6d4aa;
-            font-size: 0.65rem;
+            font-size: 0.75rem;
             letter-spacing: 2px;
-            transition: 0.2s;
+            transition: all 0.3s ease;
             text-transform: uppercase;
             font-family: monospace;
-            white-space: nowrap;
+            cursor: pointer;
+            animation: gentleGlow 2s infinite alternate;
         }
 
         .btn:hover {
-            border-color: #c9a05a;
+            transform: scale(1.05);
+            border-color: #e6b86e;
             color: #fff5e0;
-            background: rgba(100, 70, 30, 0.2);
-            l
+            text-shadow: 0 0 6px #b87a2a;
+            box-shadow: 0 0 12px rgba(200, 140, 60, 0.5);
+            animation: none;
+        }
 
-
-etter-spacing: 3px;
+        @keyframes gentleGlow {
+            0% {
+                text-shadow: 0 0 1px #8a5a2a;
+                border-color: #6a4a28;
+                box-shadow: 0 0 2px rgba(100, 70, 30, 0.2);
+            }
+            100% {
+                text-shadow: 0 0 5px #dba542;
+                border-color: #c98a3a;
+                box-shadow: 0 0 12px rgba(200, 120, 40, 0.4);
+            }
         }
 
         footer {
@@ -253,7 +251,6 @@ etter-spacing: 3px;
             word-break: break-word;
         }
 
-        /* Адаптация под маленькие телефоны */
         max-width: 550px {
             .card {
                 padding: 1.2rem;
@@ -271,16 +268,16 @@ etter-spacing: 3px;
                 letter-spacing: 1px;
             }
             .btn {
-                padding: 0.4rem 0.6rem;
-                font-size: 0.55rem;
-                letter-spacing: 1px;
-                white-space: normal;
-            }
-            .schedule p {
+                padding: 0.4rem 0.8rem;
                 font-size: 0.6rem;
+                letter-spacing: 1.5px;
+            }
+            .schedule-item {
                 flex-direction: column;
-                align-items: flex-start;
                 gap: 0.2rem;
+            }
+            .schedule-value {
+                text-align: left;
             }
         }
     </style>
@@ -289,12 +286,15 @@ etter-spacing: 3px;
 
 <div class="card">
     <div class="avatar">
-          <img src="avatar.jpg" alt="avatar" style="width:100%; height:100%; object-fit: cover; filter: grayscale(0.3);">
-</div>
+        <img src="avatar.jpg" alt="avatar">
+    </div>
 
     <h1>1PTS_BLESSED</h1>
     <div class="container-center">
-        <div class="twitch-name">TWITCH.TV/1PTS_BLESSED</div>
+        <di
+
+
+v class="twitch-name">TWITCH.TV/1PTS_BLESSED</div>
     </div>
 
     <div class="cry-out">
@@ -302,12 +302,23 @@ etter-spacing: 3px;
         <div class="russian">ИЗ БЕЗДНЫ ВОЗЗВАЛ Я К ТЬМЕ</div>
     </div>
 
+    <!-- РАСПИСАНИЕ: английский + русский -->
     <div class="schedule">
-        <p><strong>RITUALS</strong> <span>VT · TH · SA — 21:00 MSK</span></p>
-        <p><strong>GENRES</strong> <span>SOULS-LIKE · GOTHIC · SURVIVAL HORROR</span></p>
-        <p><strong>NEXT SACRIFICE</strong> <span>DARKEST DUNGEON / BLASPHEMOUS</span></p>
+        <div class="schedule-item">
+            <span class="schedule-label">RITUALS / РИТУАЛЫ</span>
+            <span class="schedule-value">VT · TH · SA — 21:00 MSK / ВТ · ЧТ · СБ — 21:00 МСК</span>
+        </div>
+        <div class="schedule-item">
+            <span class="schedule-label">GENRES / ЖАНРЫ</span>
+            <span class="schedule-value">SOULS-LIKE · GOTHIC · SURVIVAL HORROR / СОУЛС-ЛАЙК · ГОТИКА · ХОРРОР</span>
+        </div>
+        <div class="schedule-item">
+            <span class="schedule-label">NEXT SACRIFICE / СЛЕДУЮЩЕЕ ЖЕРТВОПРИНОШЕНИЕ</span>
+            <span class="schedule-value">DARKEST DUNGEON / BLASPHEMOUS</span>
+        </div>
     </div>
 
+    <!-- КНОПКИ — НАЗВАНИЯ НА АНГЛИЙСКОМ -->
     <div class="links">
         <a href="https://twitch.tv/1pts_blessed" class="btn" target="_blank">TWITCH</a>
         <a href="https://t.me/Dota_eben_baton" class="btn" target="_blank">TELEGRAM</a>
@@ -322,6 +333,7 @@ etter-spacing: 3px;
 
 </body>
 </html>
+
 
 
 
