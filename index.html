@@ -12,17 +12,18 @@
         }
 
         body {
+            background: #020105;
             font-family: 'Times New Roman', 'Georgia', serif;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            padding: 2rem;
+            padding: 1rem;
             position: relative;
             color: #d9cbad;
         }
 
-        /* ↓↓↓ СЮДА ВСТАВЬ ССЫЛКУ НА КАРТИНКУ (ЛЕС, ЗАМОК, МРАК) ↓↓↓ */
+        /* ФОН: мрачный лес + готический замок */
         body::before {
             content: "";
             position: fixed;
@@ -30,16 +31,15 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: url('fon2.jpg');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            filter: brightness(0.3) contrast(1.1) grayscale(0.4);
+            background-image:  url('fon2.jpg');
+            background-size: 300px 100%, 280px 100%, 400px 100%;
+            background-position: left bottom, right bottom, center bottom;
+            background-repeat: no-repeat, no-repeat, repeat-x;
             z-index: -2;
             pointer-events: none;
         }
 
-        /* Затемнение сверху для читаемости текста */
+        /* Затемнение */
         body::after {
             content: "";
             position: fixed;
@@ -47,62 +47,71 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(ellipse at 50% 30%, rgba(0,0,0,0.4) 30%, #010001 90%);
+            background: radial-gradient(ellipse at 50% 30%, transparent 40%, #010001 95%);
             z-index: -1;
             pointer-events: none;
         }
 
-        /* Основная карточка */
+        /* Основной блок — адаптивный */
         .card {
             max-width: 740px;
             width: 100%;
             background: #0a050ae0;
             backdrop-filter: blur(3px);
             border: 1px solid #5a3a28;
-            padding: 2.8rem 2.2rem;
+            padding: 1.8rem;
             position: relative;
             z-index: 10;
             box-shadow: 0 25px 45px rgba(0,0,0,0.9), inset 0 0 35px rgba(40, 20, 5, 0.3);
         }
 
-        /* Вензельная рамка */
-        .card::before {
-            content: "᚛ ᚁ ᚂ ᚃ ᚄ ᚅ ᚆ ᚇ ᚈ ᚉ ᚊ ᚋ ᚌ ᚍ ᚎ ᚏ ᚐ ᚑ ᚒ ᚓ ᚔ ᚕ ᚖ ᚗ ᚘ ᚙ ᚚ ᚛";
-            position: absolute;
-            top: -25px;
-            left: 0;
-            right: 0;
-            text-align: center;
-            font-size: 0.7rem;
-            color: #8a6a42;
-            letter-spacing: 3px;
-            white-space: nowrap;
-            overflow-x: auto;
-            font-family: monospace;
-            opacity: 0.5;
+        /* Вензельная рамка — скрывается на телефонах, чтобы не мешать */
+        .card::before, .card::after {
+            display: none;
         }
 
-        .card::after {
-            content: "᚛ ᚁ ᚂ ᚃ ᚄ ᚅ ᚆ ᚇ ᚈ ᚉ ᚊ ᚋ ᚌ ᚍ ᚎ ᚏ ᚐ ᚑ ᚒ ᚓ ᚔ ᚕ ᚖ ᚗ ᚘ ᚙ ᚚ ᚛";
-            position: absolute;
-            bottom: -25px;
-            left: 0;
-            right: 0;
-            text-align: center;
-            font-size: 0.7rem;
-            color: #8a6a42;
-            letter-spacing: 3px;
-            white-space: nowrap;
-            font-family: monospace;
-            opacity: 0.5;
-            transform: rotate(180deg);
+        min-width: 768px {
+            .card::before, .card::after {
+                display: block;
+            }
+            .card::before {
+                content: "᚛ ᚁ ᚂ ᚃ ᚄ ᚅ ᚆ ᚇ ᚈ ᚉ ᚊ ᚋ ᚌ ᚍ ᚎ ᚏ ᚐ ᚑ ᚒ ᚓ ᚔ ᚕ ᚖ ᚗ ᚘ ᚙ ᚚ ᚛";
+                position: absolute;
+                top: -25px;
+                left: 0;
+                right: 0;
+                text-align: center;
+                font-size: 0.6rem;
+                color: #8a6a42;
+                letter-spacing: 2px;
+                white-space: nowrap;
+                overflow-x: auto;
+                font-family: monospace;
+                opacity: 0.5;
+            }
+            .card::after {
+                content: "᚛ ᚁ ᚂ ᚃ ᚄ ᚅ ᚆ ᚇ ᚈ ᚉ ᚊ ᚋ ᚌ ᚍ ᚎ ᚏ ᚐ ᚑ ᚒ ᚓ ᚔ ᚕ ᚖ ᚗ ᚘ ᚙ ᚚ ᚛";
+                position: absolute;
+
+
+bottom: -25px;
+                left: 0;
+                right: 0;
+                text-align: center;
+                font-size: 0.6rem;
+                color: #8a6a42;
+                letter-spacing: 2px;
+                white-space: nowrap;
+                font-family: monospace;
+                opacity: 0.5;
+                transform: rotate(180deg);
+            }
         }
 
-        /* Аватар */
         .avatar {
-            width: 140px;
-            height: 140px;
-            margin: 0 auto 1.5rem;
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 1.2rem;
             background: #030103;
             display: flex;
             align-items: center;
@@ -113,43 +122,40 @@
         }
 
         .avatar span {
-            font-size: 3.2rem;
+            font-size: 3rem;
             color: #aa8a5a;
-            font-family: serif;
         }
 
         h1 {
-            font-family: 'Times New Roman', 'Georgia', serif;
-            font-size: 2.2rem;
+            font-size: 1.6rem;
             text-align: center;
-            letter-spacing: 8px;
+            letter-spacing: 4px;
             text-transform: uppercase;
             color: #e6d4aa;
             font-weight: 400;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.3rem;
             text-shadow: 0 0 3px #2a1505;
+            word-break: break-word;
         }
 
         .twitch-name {
             text-align: center;
-            font-family: 'Courier New', mono
-
-
-space;
-            font-size: 0.8rem;
+            font-family: 'Courier New', monospace;
+            font-size: 0.7rem;
             color: #b69054;
-            letter-spacing: 3px;
+            letter-spacing: 2px;
             text-transform: uppercase;
             border-bottom: 1px solid #4a2e1a;
             display: inline-block;
-            margin: 0 auto 1.2rem;
-            padding-bottom: 0.4rem;
+            margin: 0 auto 1rem;
+            padding-bottom: 0.3rem;
+            word-break: break-word;
         }
 
-        /* Главный акцент */
+        /* Главный акцент — с переносами для телефона */
         .cry-out {
-            padding: 1.2rem 0.8rem;
-            margin: 1.8rem 0;
+            padding: 1rem 0.5rem;
+            margin: 1.5rem 0;
             text-align: center;
             border-top: 2px solid #8a5a2a;
             border-bottom: 2px solid #8a5a2a;
@@ -158,30 +164,31 @@ space;
         }
 
         .latin {
-            font-family: 'Times New Roman', serif;
-            font-size: 1.2rem;
-            letter-spacing: 3px;
+            font-size: 1rem;
+            letter-spacing: 2px;
             text-transform: uppercase;
             color: #e6c88a;
             text-shadow: 0 0 5px #3a1a08;
             font-style: italic;
             margin-bottom: 0.5rem;
+            word-break: break-word;
+            hyphens: auto;
         }
 
         .russian {
-            font-family: 'Times New Roman', serif;
-            font-size: 1rem;
-            letter-spacing: 2px;
+            font-size: 0.9rem;
+            letter-spacing: 1.5px;
             color: #d4b67a;
             text-transform: uppercase;
             font-weight: 500;
             border-top: 1px solid #5a3a1a;
             display: inline-block;
-            padding-top: 0.6rem;
+            padding-top: 0.5rem;
+            word-break: break-word;
         }
 
         .schedule p {
-            margin: 0.7rem 0;
+            margin: 0.6rem 0;
             display: flex;
             justify-content: space-between;
             flex-wrap: wrap;
@@ -190,7 +197,8 @@ space;
             text-transform: uppercase;
             color: #d4be8a;
             border-bottom: 1px dotted #4a301a;
-            padding-bottom: 0.5rem;
+            padding-bottom: 0.4rem;
+            gap: 0.5rem;
         }
 
         .schedule strong {
@@ -203,51 +211,77 @@ space;
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 0.8rem;
-            margin: 2rem 0 1.2rem;
+            gap: 0.6rem;
+            margin: 1.5rem 0 1rem;
         }
 
         .btn {
             background: transparent;
             border: 1px solid #6a4a28;
-            padding: 0.6rem 1.2rem;
+            padding: 0.5rem 1rem;
             text-decoration: none;
             font-weight: 400;
             color: #e6d4aa;
-            font-size: 0.7rem;
-            letter-spacing: 3px;
+            font-size: 0.65rem;
+            letter-spacing: 2px;
             transition: 0.2s;
             text-transform: uppercase;
             font-family: monospace;
+            white-space: nowrap;
         }
 
         .btn:hover {
             border-color: #c9a05a;
             color: #fff5e0;
             background: rgba(100, 70, 30, 0.2);
-            letter-spacing: 4px;
+            l
+
+
+etter-spacing: 3px;
         }
 
         footer {
-            margin-top: 2rem;
+            margin-top: 1.5rem;
             text-align: center;
-            font-size: 0.6rem;
+            font-size: 0.55rem;
             color: #7a5a38;
-            letter-spacing: 2px;
+            letter-spacing: 1.5px;
             text-transform: uppercase;
             border-top: 1px solid #2a1a0a;
-            padding-top: 1rem;
+            padding-top: 0.8rem;
             font-family: monospace;
+            word-break: break-word;
         }
 
-        max-width: 700px {
-            body { padding: 1rem; }
-            .card { padding: 1.5rem; }
-            h1 { font-size: 1.4rem; letter-spacing: 4px; }
-            .latin { font-size: 0.85rem; }
-            .russian { font-size: 0.7rem; }
-            .btn { padding: 0.4rem 0.8rem; font-size: 0.55rem; }
-            .card::before, .card::after { font-size: 0.4rem; white-space: normal; top: -12px; bottom: -12px; }
+        /* Адаптация под маленькие телефоны */
+        max-width: 550px {
+            .card {
+                padding: 1.2rem;
+            }
+            h1 {
+                font-size: 1.3rem;
+                letter-spacing: 2px;
+            }
+            .latin {
+                font-size: 0.75rem;
+                letter-spacing: 1px;
+            }
+            .russian {
+                font-size: 0.7rem;
+                letter-spacing: 1px;
+            }
+            .btn {
+                padding: 0.4rem 0.6rem;
+                font-size: 0.55rem;
+                letter-spacing: 1px;
+                white-space: normal;
+            }
+            .schedule p {
+                font-size: 0.6rem;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.2rem;
+            }
         }
     </style>
 </head>
@@ -255,7 +289,7 @@ space;
 
 <div class="card">
     <div class="avatar">
-        <img src="avatar.jpg" alt="avatar" style="width:100%; height:100%; object-fit: cover; filter: grayscale(0.3);">
+          <img src="avatar.jpg" alt="avatar" style="width:100%; height:100%; object-fit: cover; filter: grayscale(0.3);">
 </div>
 
     <h1>1PTS_BLESSED</h1>
@@ -264,16 +298,14 @@ space;
     </div>
 
     <div class="cry-out">
-        <div class="latin">EX TENEBRIS CLAMAVI AD TE, DOMINE</div>
+        <div class="latin">EX TENEBRIS CLAMAVI AD TENEBRAS</div>
         <div class="russian">ИЗ БЕЗДНЫ ВОЗЗВАЛ Я К ТЬМЕ</div>
     </div>
 
     <div class="schedule">
         <p><strong>RITUALS</strong> <span>VT · TH · SA — 21:00 MSK</span></p>
         <p><strong>GENRES</strong> <span>SOULS-LIKE · GOTHIC · SURVIVAL HORROR</span></p>
-
-
-<p><strong>NEXT SACRIFICE</strong> <span>DARKEST DUNGEON / BLASPHEMOUS</span></p>
+        <p><strong>NEXT SACRIFICE</strong> <span>DARKEST DUNGEON / BLASPHEMOUS</span></p>
     </div>
 
     <div class="links">
@@ -290,3 +322,6 @@ space;
 
 </body>
 </html>
+
+
+
