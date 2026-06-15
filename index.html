@@ -23,7 +23,7 @@
             color: #d9cbad;
         }
 
-        /* ФОН — background2.jpg */
+        /* ФОН — fon2.jpg */
         body::before {
             content: "";
             position: fixed;
@@ -55,22 +55,25 @@
         }
 
         .card {
-            max-width: 740px;
+            max-width: 700px;
             width: 100%;
             background: #0a050ae0;
             backdrop-filter: blur(3px);
             border: 1px solid #5a3a28;
-            padding: 1.8rem;
+            padding: 2rem 1.5rem;
             position: relative;
             z-index: 10;
             box-shadow: 0 25px 45px rgba(0,0,0,0.9), inset 0 0 35px rgba(40, 20, 5, 0.3);
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
         }
 
         /* АВАТАР — avatar.jpg */
         .avatar {
             width: 120px;
             height: 120px;
-            margin: 0 auto 1.2rem;
+            margin: 0 auto 1rem;
             background: #030103;
             display: flex;
             align-items: center;
@@ -88,13 +91,13 @@
         }
 
         h1 {
-            font-size: 1.6rem;
+            font-size: 1.8rem;
             text-align: center;
-            letter-spacing: 4px;
+            letter-spacing: 6px;
             text-transform: uppercase;
             color: #e6d4aa;
             font-weight: 400;
-            margin-bottom: 0.3rem;
+            margin-bottom: 0.2rem;
             text-shadow: 0 0 3px #2a1505;
             word-break: break-word;
         }
@@ -102,14 +105,14 @@
         .twitch-name {
             text-align: center;
             font-family: 'Courier New', monospace;
-            font-size: 0.7rem;
+            font-size: 0.75rem;
             color: #b69054;
             letter-spacing: 2px;
             text-transform: uppercase;
             border-bottom: 1px solid #4a2e1a;
             display: inline-block;
-            margin: 0 auto 1rem;
-            padding-bottom: 0.3rem;
+            margin: 0 auto 0.8rem;
+            padding-bottom: 0.4rem;
             word-break: break-word;
         }
 
@@ -117,10 +120,10 @@
             text-align: center;
         }
 
-        /* Главный акцент — на двух языках */
+        /* Главный акцент */
         .cry-out {
-            padding: 1rem 0.5rem;
-            margin: 1.5rem 0;
+            padding: 1rem;
+            margin: 0.8rem 0;
             text-align: center;
             border-top: 2px solid #8a5a2a;
             border-bottom: 2px solid #8a5a2a;
@@ -134,11 +137,10 @@
             text-transform: uppercase;
             color: #e6c88a;
             text-shadow: 0 0 5px #3a1a08;
-            font-style: italic;
-            margin-bottom: 0.
 
 
-5rem;
+font-style: italic;
+            margin-bottom: 0.5rem;
             word-break: break-word;
         }
 
@@ -154,98 +156,135 @@
             word-break: break-word;
         }
 
-        /* Расписание — дублирование на русском и английском */
-        .schedule-item {
-            margin: 0.8rem 0;
+        /* Расписание */
+        .schedule {
             display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
+            flex-direction: column;
+            gap: 0.6rem;
+            margin: 0.8rem 0;
+        }
+
+        .schedule-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.2rem;
             font-size: 0.7rem;
             letter-spacing: 1px;
             border-bottom: 1px dotted #4a301a;
             padding-bottom: 0.5rem;
-            gap: 0.5rem;
         }
 
         .schedule-label {
             color: #e6cf8a;
             font-weight: 500;
             font-family: monospace;
+            font-size: 0.75rem;
         }
 
         .schedule-value {
             color: #d4be8a;
-            text-align: right;
+            font-size: 0.7rem;
         }
 
-        .schedule-value span {
-            display: inline-block;
-        }
-
-        .schedule-value .eng {
-            color: #c4a06a;
-        }
-
-        .schedule-value .rus {
-            color: #b89060;
-            font-size: 0.65rem;
-        }
-
-        /* Кнопки — названия на английском */
+        /* КНОПКИ-ШЕСТИУГОЛЬНИКИ с анимацией загрузки */
         .links {
             display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 0.8rem;
-            margin: 1.8rem 0 1.2rem;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            margin: 1.2rem 0 1rem;
         }
 
         .btn {
-            background: transparent;
-            border: 1px solid #6a4a28;
-            padding: 0.6rem 1.2rem;
+            position: relative;
+            width: 220px;
+            background: rgba(10, 5, 10, 0.8);
+            border: 1px solid #8a5a2a;
+            padding: 0.8rem 1rem;
             text-decoration: none;
-            font-weight: 400;
+            font-weight: 500;
             color: #e6d4aa;
-            font-size: 0.75rem;
-            letter-spacing: 2px;
+            font-size: 0.85rem;
+            letter-spacing: 3px;
             transition: all 0.3s ease;
             text-transform: uppercase;
             font-family: monospace;
             cursor: pointer;
-            animation: gentleGlow 2s infinite alternate;
+            text-align: center;
+            z-index: 1;
+            overflow: hidden;
+            clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+            animation: hexPulse 2.5s infinite alternate;
+        }
+
+        /* Анимация пульсации шестиугольника */
+        @keyframes hexPulse {
+            0% {
+                border-color: #6a4a28;
+                box-shadow: 0 0 5px rgba(100, 70, 30, 0.3);
+                text-shadow: 0 0 2px #8a5a2a;
+            }
+            100% {
+                border-color: #e6b86e;
+                box-shadow: 0 0 20px rgba(200, 140, 60, 0.6);
+                text-shadow: 0 0 6px #c98a3a;
+            }
+        }
+
+        /* Эффект загрузки — вращающийся луч по краю */
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: conic-gradient(from 0deg, 
+                transparent 0deg, 
+                #e6b86e, 
+                #ffdd99, 
+                #e6b86e, 
+                transparent 360deg);
+            border-radius: inherit;
+            clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        /* Анимация загрузки при наведении */
+        .btn:hover::before {
+            opacity: 0.6;
+            animation: spin 1.5s linear infinite;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
         }
 
         .btn:hover {
             transform: scale(1.05);
-            border-color: #e6b86e;
-            color: #fff5e0;
-            text-shadow: 0 0 6px #b87a2a;
-            box-shadow: 0 0 12px rgba(200, 140, 60, 0.5);
+            background: rgba(20, 10, 15, 0.9);
+            letter-spacing: 4px;
             animation: none;
         }
 
-        @keyframes gentleGlow {
-            0% {
-                text-shadow: 0 0 1px #8a5a2a;
-                border-color: #6a4a28;
-                box-shadow: 0 0 2px rgba(100, 70, 30, 0.2);
-            }
-            100% {
-                text-shadow: 0 0 5px #dba542;
-                border-color: #c98a3a;
-                box-shadow: 0 0 12px rgba(200, 120, 40, 0.4);
-            }
-        }
-
         footer {
-            margin-top: 1.5rem;
+            margin-top: 1rem;
             text-align: center;
             font-size: 0.55rem;
             color: #7a5a38;
             letter-spacing: 1.5px;
             text-transform: uppercase;
-            border-top: 1px solid #2a1a0a;
+            border-top: 1px solid #2a1
+
+
+a0a;
             padding-top: 0.8rem;
             font-family: monospace;
             word-break: break-word;
@@ -257,27 +296,18 @@
             }
             h1 {
                 font-size: 1.3rem;
-                letter-spacing: 2px;
+                letter-spacing: 4px;
             }
             .latin {
                 font-size: 0.75rem;
-                letter-spacing: 1px;
             }
             .russian {
                 font-size: 0.7rem;
-                letter-spacing: 1px;
             }
             .btn {
-                padding: 0.4rem 0.8rem;
-                font-size: 0.6rem;
-                letter-spacing: 1.5px;
-            }
-            .schedule-item {
-                flex-direction: column;
-                gap: 0.2rem;
-            }
-            .schedule-value {
-                text-align: left;
+                width: 200px;
+                font-size: 0.7rem;
+                padding: 0.6rem 0.8rem;
             }
         }
     </style>
@@ -291,10 +321,7 @@
 
     <h1>1PTS_BLESSED</h1>
     <div class="container-center">
-        <di
-
-
-v class="twitch-name">TWITCH.TV/1PTS_BLESSED</div>
+        <div class="twitch-name">TWITCH.TV/1PTS_BLESSED</div>
     </div>
 
     <div class="cry-out">
@@ -302,7 +329,6 @@ v class="twitch-name">TWITCH.TV/1PTS_BLESSED</div>
         <div class="russian">ИЗ БЕЗДНЫ ВОЗЗВАЛ Я К ТЬМЕ</div>
     </div>
 
-    <!-- РАСПИСАНИЕ: английский + русский -->
     <div class="schedule">
         <div class="schedule-item">
             <span class="schedule-label">RITUALS / РИТУАЛЫ</span>
@@ -318,7 +344,6 @@ v class="twitch-name">TWITCH.TV/1PTS_BLESSED</div>
         </div>
     </div>
 
-    <!-- КНОПКИ — НАЗВАНИЯ НА АНГЛИЙСКОМ -->
     <div class="links">
         <a href="https://twitch.tv/1pts_blessed" class="btn" target="_blank">TWITCH</a>
         <a href="https://t.me/Dota_eben_baton" class="btn" target="_blank">TELEGRAM</a>
@@ -333,7 +358,6 @@ v class="twitch-name">TWITCH.TV/1PTS_BLESSED</div>
 
 </body>
 </html>
-
 
 
 
